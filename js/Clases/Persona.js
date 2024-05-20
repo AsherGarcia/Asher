@@ -21,4 +21,4 @@ class Persona{
     }
 }
 
-module.exports = Persona;
+module.exports = {Persona};

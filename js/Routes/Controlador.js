@@ -1,12 +1,12 @@
-const Crud = require("../Crud/Crud.js");
-const Respuestas = require("./CrearRespuestas.js");
-const Profesor = require("../Clases/Profesor.js");
-const Alumno = require("../Clases/Alumno.js");
+const Crud = require("./../ConexionMySQL/Crud.js");
+const Generar = require("./../Extras/GenerarHtml.js");
+const {Profesor} = require("./../Clases/Profesor.js");
+const {Alumno} = require("./../Clases/Alumno.js");
 
 class Controlador{
     constructor(){
         this.crud = new Crud();
-        this.generar = new Respuestas();
+        this.generar = new Generar();
     }
 
     async obtenerAlumnos(req, res){

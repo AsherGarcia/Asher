@@ -1,4 +1,4 @@
-const Persona = require("./Persona.js");
+const {Persona} = require("./Persona.js");
 
 class Alumno extends Persona{
     constructor(nombre, edad, boleta, grupo){
@@ -24,4 +24,4 @@ class Alumno extends Persona{
     }
 }
 
-module.exports = Alumno;
+module.exports = {Alumno};

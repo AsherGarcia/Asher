@@ -1,19 +1,10 @@
-const mysql = require("mysql2");
-const Alumno = require("../Clases/Alumno.js");
-const Profesor = require("../Clases/Profesor.js");
+const {ConectarBD} = require("./ConectarBD.js");
+const {Alumno} = require("./../Clases/Alumno.js");
+const {Profesor} = require("./../Clases/Profesor.js");
 
 class Crud{
     constructor(){
-        this.conexion = mysql.createConnection({
-            host : "localhost",
-            user : "root",
-            password : "130406",
-            database : "crud"
-        });
-        
-        this.conexion.connect((err)=>{
-            if(err){console.log(err);}
-        });
+        this.conexion = new ConectarBD();
     }
 
     async obtenerIdGrupo(nombre){

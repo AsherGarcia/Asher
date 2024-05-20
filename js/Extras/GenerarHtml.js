@@ -1,4 +1,4 @@
-class Respuestas{
+class Generar{
     constructor(){}
 
     generarEstructuraHtml(body = "", titulo = ""){
@@ -277,4 +277,4 @@ class Respuestas{
     }
 }
 
-module.exports = Respuestas;
+module.exports = Generar;
