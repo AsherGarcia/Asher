@@ -2,11 +2,12 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const Routes = require("./../Routes/Routes.js");
 const app = express();
+import {PORT} from "./../../config.js";
 
 class Servidor{
     constructor(){
         this.abierto = false;
-        this.puerto = 1999;
+        this.puerto = PORT;
         this.url = 'http://localhost:'+this.puerto+'/';
     }
 

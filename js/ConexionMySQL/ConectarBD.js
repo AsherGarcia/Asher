@@ -1,12 +1,14 @@
 const mysql = require('mysql2');
+import {BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT} from "./../../config.js";
 
 class ConectarBD{
     constructor(){
         this.conection = mysql.createConnection({
-            host : "localhost",
-            user : "root",
-            password : "130406",
-            database : "crud"
+            host : BD_HOST,
+            user : BD_USER,
+            password : BD_PASSWORD,
+            database : BD_NAME,
+            port: BD_PORT
         });
         
         this.conection.connect((err)=>{
