@@ -9,7 +9,7 @@ async function ConectarBD(){
         database : BD_NAME,
         port: BD_PORT
     });
-    
+     
     conection.connect((err)=>{
         if(err){console.log(err);}
     });
