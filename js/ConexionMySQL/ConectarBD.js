@@ -12,7 +12,10 @@ class ConectarBD{
         });
         
         this.conection.connect((err)=>{
-            if(err){console.log(err);}
+            if(err){
+                console.log(err);
+            }
+            console.log("Conexion Realizada: "+this.conection.authorized)
         });
     
         return this.conection;
