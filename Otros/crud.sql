@@ -25,11 +25,12 @@ DROP TABLE IF EXISTS `alumno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alumno` (
+  `alu_id` int NOT NULL,
   `alu_boleta` varchar(10) NOT NULL,
   `alu_nombre` varchar(45) NOT NULL,
   `alu_edad` int NOT NULL,
   `gru_id` int NOT NULL,
-  PRIMARY KEY (`alu_boleta`),
+  PRIMARY KEY (`alu_id`),
   KEY `fk3_idx` (`gru_id`),
   CONSTRAINT `fk3` FOREIGN KEY (`gru_id`) REFERENCES `grupos` (`gru_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -45,37 +46,6 @@ LOCK TABLES `alumno` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `asignarciones`
---
-
-DROP TABLE IF EXISTS `asignarciones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `asignarciones` (
-  `asi_id` int NOT NULL,
-  `pro_id` int NOT NULL,
-  `gru_id` int NOT NULL,
-  `mat_id` int NOT NULL,
-  PRIMARY KEY (`asi_id`),
-  KEY `fk4_idx` (`pro_id`),
-  KEY `fk5_idx` (`gru_id`),
-  KEY `fk6_idx` (`mat_id`),
-  CONSTRAINT `fk4` FOREIGN KEY (`pro_id`) REFERENCES `profesor` (`pro_id`),
-  CONSTRAINT `fk5` FOREIGN KEY (`gru_id`) REFERENCES `grupos` (`gru_id`),
-  CONSTRAINT `fk6` FOREIGN KEY (`mat_id`) REFERENCES `materias` (`mat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `asignarciones`
---
-
-LOCK TABLES `asignarciones` WRITE;
-/*!40000 ALTER TABLE `asignarciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `asignarciones` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `grupos`
 --
 
@@ -84,7 +54,7 @@ DROP TABLE IF EXISTS `grupos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `grupos` (
   `gru_id` int NOT NULL,
-  `gru_grupo` varchar(4) NOT NULL,
+  `gru_grupo` varchar(20) NOT NULL,
   PRIMARY KEY (`gru_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -95,6 +65,7 @@ CREATE TABLE `grupos` (
 
 LOCK TABLES `grupos` WRITE;
 /*!40000 ALTER TABLE `grupos` DISABLE KEYS */;
+INSERT INTO `grupos` VALUES (1,'Bimbo'),(2,'Barcel'),(3,'Pepsi');
 /*!40000 ALTER TABLE `grupos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,6 +89,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
+INSERT INTO `materias` VALUES (1,'Abarrotes'),(2,'Esquina'),(3,'Mercado'),(4,'Ropa'),(5,'a'),(6,'b');
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,6 +120,7 @@ CREATE TABLE `profesor` (
 
 LOCK TABLES `profesor` WRITE;
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
+INSERT INTO `profesor` VALUES (3,'Beta',19,1,1);
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -160,4 +133,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-07 12:09:08
+-- Dump completed on 2024-05-21  2:24:46

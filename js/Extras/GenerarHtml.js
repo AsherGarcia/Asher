@@ -52,9 +52,9 @@ class Generar{
         let formulario = `<br><br><form action='/ingresarAlumno' method='POST'>
             <input type='text' name='boleta' placeholder='Boleta' required>
             <br>
-            <input type='text' name='nombre' placeholder='Nombre' required>
+            <input type='text' name='nombre' minlength='3' placeholder='Nombre' required>
             <br>
-            <input type='number' name='edad' placeholder='Edad' required>
+            <input type='number' name='edad' min='0' placeholder='Edad' required>
             <bR>
             <select name='grupo'>
                 ${gruposDis}
@@ -110,9 +110,9 @@ class Generar{
         </table>
         <br><br>
         <form action='/ingresarProfesor' method='POST'>
-            <input type='text' name='nombre' placeholder='Nombre' required>
+            <input type='text' minlength='3' name='nombre' placeholder='Nombre' required>
             <br>
-            <input type='number' name='edad' placeholder='Edad' required>
+            <input type='number' min='0' name='edad' placeholder='Edad' required>
             <br>
             <select name='grupo' required>
                 ${gruposDis}
@@ -148,7 +148,7 @@ class Generar{
         </table>`;
 
         let formulario = `<form action="/ingresarGrupo" method="POST">
-            <input type="text" name="grupo" required>
+            <input type="text" minlength='3' name="grupo" required>
             <br>
             <input type="submit" value="Agregar Grupo">
         </form>
@@ -176,7 +176,7 @@ class Generar{
         </table>`;
 
         let formulario = `<form action="/ingresarMateria" method="POST">
-            <input type="text" name="materia" placeholder='Materia' required>
+            <input type="text" minlength='3' name="materia" placeholder='Materia' required>
             <br>
             <input type="submit" value="Agregar Materia">
         </form>
@@ -199,9 +199,9 @@ class Generar{
 
         let profe = `<form action='/modificarProfesor' method='POST'>
         <input type='hidden' name='id' value='${profesor.getIdentificador}'>
-        <input type='text' name='nombre' placeholder='Nombre' value='${profesor.getNombre}'>
+        <input type='text' minlength='3' name='nombre' placeholder='Nombre' value='${profesor.getNombre}'>
         <br>
-        <input type='number' name='edad' placeholder='Edad' value='${profesor.getEdad}'>
+        <input type='number' min='0' name='edad' placeholder='Edad' value='${profesor.getEdad}'>
         <br>
         <select name='grupo'>
             ${gruposDis}
@@ -228,9 +228,9 @@ class Generar{
 
         let alum = `<form action='/modificarAlumno' method='POST'>
         <input type='hidden' name='boleta' placeholder='Boleta' value='${alumno.getBoleta}'>
-        <input type='text' name='nombre' placeholder='Nombre' value='${alumno.getNombre}'>
+        <input type='text' minlength='3' name='nombre' placeholder='Nombre' value='${alumno.getNombre}'>
         <br>
-        <input type='number' name='edad' placeholder='Edad' value='${alumno.getEdad}'>
+        <input type='number' min='0' name='edad' placeholder='Edad' value='${alumno.getEdad}'>
         <br>
         <select name='grupo'>
             ${gruposDis}
