@@ -62,7 +62,7 @@ class Controlador{
             let materia = await this.crud.obtenerIdMateria(req.body.materia);
             let grupo = await this.crud.obtenerIdGrupo(req.body.grupo);
             
-            if(edad > 18 && materia.length > 3 && grupo.length === 4){
+            if(nombre.length > 3 && edad > 18 && materia.length > 3 && grupo.length === 4){
                 await this.crud.agregarProfesor(new Profesor(nombre, edad, grupo, materia, 0));
             }
         }
