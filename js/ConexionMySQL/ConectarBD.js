@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 const  {BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT} = require("./../../config.js");
 
 async function ConectarBD(){
-    this.conection = await mysql.createConnection({
+    let conection = await mysql.createConnection({
         host : BD_HOST,
         user : BD_USER,
         password : BD_PASSWORD,
@@ -10,7 +10,7 @@ async function ConectarBD(){
         port: BD_PORT
     });
     
-    this.conection.connect((err)=>{
+    conection.connect((err)=>{
         if(err){console.log(err);}
     });
 
