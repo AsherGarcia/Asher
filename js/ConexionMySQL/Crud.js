@@ -4,11 +4,7 @@ const {Profesor} = require("./../Clases/Profesor.js");
 
 class Crud{
     constructor(){
-        this.conexion = this.establecerConexion();
-    }
-
-    async establecerConexion(){
-        return await ConectarBD();
+        this.conexion = new ConectarBD();
     }
 
     async obtenerIdGrupo(nombre){

@@ -1,8 +1,9 @@
-export const PORT = process.env.PORT || 9999;
+const PORT = process.env.PORT || 9999;
 
-export const BD_HOST = process.env.BD_HOST || 'localhost';
-export const BD_USER = process.env.BD_USER || 'root';
-export const BD_PASSWORD = process.env.BD_PASSWORD || '130406';
-export const BD_NAME = process.env.BD_NAME  || 'crud';
-export const BD_PORT = process.env.BD_PORT || 3306;
+const BD_HOST = process.env.BD_HOST || 'localhost';
+const BD_USER = process.env.BD_USER || 'root';
+const BD_PASSWORD = process.env.BD_PASSWORD || '130406';
+const BD_NAME = process.env.BD_NAME  || 'crud';
+const BD_PORT = process.env.BD_PORT || 3306;
 
+module.exports = {PORT, BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT}
