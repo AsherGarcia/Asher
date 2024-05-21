@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-import {BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT} from "./../../config.js";
+const  {BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT} = require("./../../config.js");
 
 class ConectarBD{
     constructor(){

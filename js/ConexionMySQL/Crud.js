@@ -112,9 +112,10 @@ class Crud{
     }
 
     async agregarAlumno(alumno){
+        let id = await this.obtenerIdSiguiente("alu_id", "alumno");
         let idGrupo = await this.obtenerIdGrupo(alumno.getGrupo);
         return await new Promise((resolve, reject)=>{
-            this.conexion.query("INSERT INTO alumno VALUES(?, ?, ?, ?);", [alumno.getBoleta, alumno.getNombre, alumno.getEdad, idGrupo], (error, result)=>{
+            this.conexion.query("INSERT INTO alumno VALUES(?, ?, ?, ?, ?);", [id, alumno.getBoleta, alumno.getNombre, alumno.getEdad, idGrupo], (error, result)=>{
                 if(error){
                     console.log(error); 
                     reject(false);
