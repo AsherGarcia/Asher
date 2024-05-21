@@ -1,4 +1,4 @@
-const {ConectarBD} = require("./ConectarBD.js");
+const ConectarBD = require("./ConectarBD.js");
 const {Alumno} = require("./../Clases/Alumno.js");
 const {Profesor} = require("./../Clases/Profesor.js");
 
