@@ -2,7 +2,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const Routes = require("./../Routes/Routes.js");
 const app = express();
-const { PORT } = require("./../../config.js");
+import { PORT } from "./../../config.js";
 
 class Servidor{
     constructor(){

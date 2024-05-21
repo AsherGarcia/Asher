@@ -1,10 +1,14 @@
-const ConectarBD = require("./ConectarBD.js");
+const {ConectarBD} = require("./ConectarBD.js");
 const {Alumno} = require("./../Clases/Alumno.js");
 const {Profesor} = require("./../Clases/Profesor.js");
 
 class Crud{
     constructor(){
-        this.conexion = ConectarBD();
+        this.conexion = this.establecerConexion();
+    }
+
+    async establecerConexion(){
+        return await ConectarBD();
     }
 
     async obtenerIdGrupo(nombre){
