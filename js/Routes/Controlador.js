@@ -35,7 +35,15 @@ class Controlador{
         let boleta = req.body.boleta;
         let grupo = req.body.grupo;
 
-        await this.crud.agregarAlumno(new Alumno(nombre, edad, boleta, grupo));
+        try{
+            parseInt(edad);
+            if(edad > 15 && boleta.length === 10 && grupo.length === 4 && nombre.length > 3){
+                await this.crud.agregarAlumno(new Alumno(nombre, edad, boleta, grupo));
+            }
+        }
+        catch(err){
+            console.log(err)
+        }
         res.redirect("/obtenerAlumnos");
     }
 
@@ -49,34 +57,48 @@ class Controlador{
 
     async ingresarProfesor(req, res){
         let nombre = req.body.nombre;
-        let edad = parseInt(req.body.edad);
-        let materia = await this.crud.obtenerIdMateria(req.body.materia);
-        let grupo = await this.crud.obtenerIdGrupo(req.body.grupo);
-        
-        await this.crud.agregarProfesor(new Profesor(nombre, edad, grupo, materia, 0));
-        
+        try{
+            let edad = parseInt(req.body.edad);
+            let materia = await this.crud.obtenerIdMateria(req.body.materia);
+            let grupo = await this.crud.obtenerIdGrupo(req.body.grupo);
+            
+            if(edad > 18 && materia.length > 3 && grupo.length === 4){
+                await this.crud.agregarProfesor(new Profesor(nombre, edad, grupo, materia, 0));
+            }
+        }
+        catch(err){
+            console.log(err)
+        }
 
         res.redirect("/obtenerProfesores");
     }
 
     async accionesProfesor(req, res){
         let accion = req.body.accion;
-        let id = req.body.id;
-        let profesorActualizar;
-        let profesores = await this.crud.obtenerProfesores();
+        try{
+            let id = req.body.id;
+            let profesorActualizar;
+            let profesores = await this.crud.obtenerProfesores();
 
-        profesores.forEach(profesor => {
-            if(profesor.getIdentificador === parseInt(id)){
-                profesorActualizar = profesor;
-            }   
-        });
+            profesores.forEach(profesor => {
+                if(profesor.getIdentificador === parseInt(id)){
+                    profesorActualizar = profesor;
+                }   
+            });
 
-        if(accion === "Modificar"){
-            res.send(this.generar.mostrarProfesor(profesorActualizar, await this.crud.obtenerMaterias(), await this.crud.obtenerGrupos()));
+            if(accion === "Modificar" && id > 0){
+                res.send(this.generar.mostrarProfesor(profesorActualizar, await this.crud.obtenerMaterias(), await this.crud.obtenerGrupos()));
+            }
+            else if(accion === "Eliminar"){
+                await this.crud.borrarProfesor(id);
+                res.redirect("/obtenerProfesores");
+            }
+            else{
+                res.redirect("index.html")
+            }
         }
-        else if(accion === "Eliminar"){
-            await this.crud.borrarProfesor(id);
-            res.redirect("/obtenerProfesores");
+        catch(err){
+            console.log(err);
         }
     }
 
@@ -92,23 +114,33 @@ class Controlador{
             }   
         });
 
-        if(accion === "Modificar"){
+        if(accion === "Modificar" && boleta.length === 10){
             res.send(this.generar.mostrarAlumno(alumnoActualizar, await this.crud.obtenerGrupos()));
         }
         else if(accion === "Eliminar"){
             await this.crud.borrarAlumno(boleta);
             res.redirect("/obtenerAlumnos");
         }
+        else{
+            res.redirect("index.html")
+        }
     }
 
     async modificarProfesor(req, res){
-        let id = req.body.id;
         let nombre = req.body.nombre;
         let edad = req.body.edad;
         let materia = req.body.materia;
         let grupo = req.body.grupo;
-        
-        await this.crud.actualizarProfesor(new Profesor(nombre, edad, grupo, materia, id));
+
+        try{
+            let id = req.body.id;  
+            if(materia.length > 3 && nombre.length > 3 && grupo.length === 4 && edad > 18){      
+                await this.crud.actualizarProfesor(new Profesor(nombre, edad, grupo, materia, id));
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
 
         res.redirect("/obtenerProfesores");
     }
@@ -116,10 +148,17 @@ class Controlador{
     async modificarAlumno(req, res){
         let boleta = req.body.boleta;
         let nombre = req.body.nombre;
-        let edad = req.body.edad;
         let grupo = req.body.grupo;
         
-        await this.crud.actualizarAlumno(new Alumno(nombre, edad, boleta, grupo));
+        try{
+            let edad = req.body.edad;
+            if(boleta.length === 10 && nombre.length > 3 && grupo.length === 4){
+                await this.crud.actualizarAlumno(new Alumno(nombre, edad, boleta, grupo));
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
 
         res.redirect("/obtenerAlumnos");
     }
